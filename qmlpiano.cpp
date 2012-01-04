@@ -1,5 +1,6 @@
 #include <QtGui/QApplication>
 #include "qmlapplicationviewer.h"
+#include "qmlpiano.hpp"
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
