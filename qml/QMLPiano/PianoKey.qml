@@ -55,7 +55,13 @@ Item {
         visible: opacity > 0
 
         source: down ? pianoKey.downStateSource : pianoKey.pressedStateSource
-        Behavior on opacity { PropertyAnimation { properties: "opacity"; easing.type: Easing.OutQuart; duration: pianoKey.fadeDuration } }
+        Behavior on opacity {
+            PropertyAnimation {
+                properties: "opacity"
+                easing.type: Easing.OutQuart
+                duration: pianoKey.fadeDuration
+            }
+        }
     }
 
     MouseArea {
