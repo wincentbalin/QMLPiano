@@ -6,8 +6,8 @@ Item {
     width: parent.keyWidth
     height: parent.keyHeight
 
-    signal pushed()
-    signal released()
+    signal pushed(int index)
+    signal released(int index)
 
     property alias normalStateSource: normal.source
     property url pressedStateSource
@@ -61,7 +61,13 @@ Item {
     MouseArea {
         id: mouse
         anchors.fill: parent
-        onPressed: { pianoKey.pushed(); console.debug(name + " pressed") }
-        onReleased: { pianoKey.released(); console.debug(name + " released") }
+        onPressed: {
+            pianoKey.pushed(keyIndex)
+            console.debug(name + " pressed")
+        }
+        onReleased: {
+            pianoKey.released(keyIndex)
+            console.debug(name + " released")
+        }
     }
 }
