@@ -1,2 +1,7 @@
 QMLPiano.pro.user
+Makefile
+Makefile.Debug
+Makefile.Release
+debug/
+release/
 
