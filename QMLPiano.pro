@@ -38,6 +38,9 @@ SOURCES += \
     qmlpiano.cpp \
     RtMidi.cpp
 
+OTHER_FILES += \
+    README
+
 win32:DEFINES += __WINDOWS_MM__
 win32:LIBS += -lwinmm
 unix:DEFINES += __LINUX_ALSASEQ__
@@ -48,5 +51,3 @@ unix:LIBS += -lpthread
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 
-OTHER_FILES += \
-    README
