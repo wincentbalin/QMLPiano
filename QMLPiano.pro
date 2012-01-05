@@ -29,14 +29,24 @@ symbian:TARGET.CAPABILITY += NetworkServices
 # Add dependency to Symbian components
 # CONFIG += qt-components
 
-QT += multimedia
-
 HEADERS += \
-    qmlpiano.hpp
+    qmlpiano.hpp \
+    RtMidi.h \
+    RtError.h
 
 SOURCES += \
-    qmlpiano.cpp
+    qmlpiano.cpp \
+    RtMidi.cpp
+
+win32:DEFINES += __WINDOWS_MM__
+win32:LIBS += -lwinmm
+unix:DEFINES += __LINUX_ALSASEQ__
+unix:LIBS += -lasound
+unix:LIBS += -lpthread
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
+
+OTHER_FILES += \
+    README
