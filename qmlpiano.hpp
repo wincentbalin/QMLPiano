@@ -5,6 +5,7 @@
 #include <QString>
 #include <QtDeclarative>
 
+
 #include "RtMidi.h"
 
 // Platform-dependent sleep routines, taken from an example
@@ -16,26 +17,32 @@
   #define SLEEP( milliseconds ) usleep( (unsigned long) (milliseconds * 1000.0) )
 #endif
 
-class Piano : public QDeclarativeItem
+class Piano : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(int octave READ currentOctave NOTIFY octaveChanged)
+    Q_PROPERTY(int octave READ octave WRITE setOctave NOTIFY octaveChanged)
+    Q_PROPERTY(QString portName READ portName)
 public:
-    Piano() : octave(0) {}
-    int currentOctave() const { return octave; }
+    Piano() : octave_(0) { initMIDI(); }
+    ~Piano() { cleanupMIDI(); }
+    int octave() const { return octave_; }
 signals:
-    void octaveChanged(int octave);
+    void octaveChanged(int);
+public:
+    void setOctave(int octave) { octave_ = octave; emit octaveChanged(octave_); }
+    QString portName() const { return portName_; }
 public slots:
-    void decreaseOctave();
-    void increaseOctave();
     void noteOn(int keyIndex);
     void noteOff(int keyIndex);
 private:
+    void initMIDI();
+    void cleanupMIDI();
     int key2midi(int index);
+    void sendNoteMessage(unsigned char status, int keyIndex, unsigned char velocity);
 
-    QString portName;
-    int octave;
-    RtMidiOut* midiOut;
+    int octave_;
+    RtMidiOut* midiOut_;
+    QString portName_;
 };
 
 #endif // QMLPIANO_HPP

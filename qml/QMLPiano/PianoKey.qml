@@ -67,13 +67,7 @@ Item {
     MouseArea {
         id: mouse
         anchors.fill: parent
-        onPressed: {
-            pianoKey.pushed(keyIndex)
-            console.debug(name + " pressed")
-        }
-        onReleased: {
-            pianoKey.released(keyIndex)
-            console.debug(name + " released")
-        }
+        onPressed: pianoKey.pushed(keyIndex)
+        onReleased: pianoKey.released(keyIndex)
     }
 }

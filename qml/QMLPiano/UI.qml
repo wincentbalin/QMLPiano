@@ -1,13 +1,24 @@
 import QtQuick 1.0
+import QMLPiano 1.0
 
 Rectangle {
     width: 360
     height: 360
 
-    property real octaveMargin: 30
+    signal noteOn(int note)
+    signal noteOff(int note)
 
-    signal octaveIncreased()
-    signal octaveDecreased()
+    // Positioning
+    property real spacing: 5
+
+    Piano {
+        id: piano
+//        on
+    }
+
+    Connections {
+//
+    }
 
     Flickable {
         id: flickable
@@ -16,25 +27,38 @@ Rectangle {
 
         OctaveKeys {
             id: octave
-            x: octaveMargin
-            y: octaveMargin
-            width: parent.width - octaveMargin * 2
-            height: parent.height - octaveMargin * 2
+            anchors.horizontalCenter: parent.horizontalCenter
+            y: spacing
+            width: parent.width - spacing * 2
+            height: parent.height - spacing - octaveNumber.height - spacing
+        }
+
+        Item {
+            id: octaveNumber
+            anchors.horizontalCenter: octave.horizontalCenter
+            anchors.top: octave.bottom
+
+            Text {
+                id: octaveText
+                anchors.centerIn: parent
+                text: "Octave: " + piano.octave
+            }
+        }
+
+        ListView {
+            id: parameters
         }
 
         onFlickStarted: {
             if(flickingHorizontally) {
-                if(horizontalVelocity < 0) {
-                    octaveDecreased()
-                    console.log("Octave decreased")
-                }
-                else {
-                    octaveIncreased()
-                    console.log("Octave increased")
-                }
+                if(horizontalVelocity < 0)
+                    piano.octave = piano.octave - 1
+                else
+                    piano.octave = piano.octave + 1
             }
         }
     }
+
 
     /*
     Text {
