@@ -49,40 +49,35 @@ Item {
         }
     }
 
+    Item {
+        id: octaveNumber
 
-    /*
-    Text {
-        anchors.centerIn: parent
-        text: "Hello World"
-    }
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            if(color == "white")
-                color = "black"
-            else
-                color = white
-            //Qt.quit();
+        height: root.height * 0.1
+        anchors.horizontalCenter: root.horizontalCenter
+        anchors.top: flickable.bottom
+
+        Text {
+            id: octaveNumberLabel
+            anchors.centerIn: parent
+            font.pointSize: parent.height - spacing
+            text: "Octave: " + piano.octave
         }
-    } */
-}
-
-/*
-// import QtQuick 1.0 // to target S60 5th Edition or Maemo 5
-import QtQuick 1.1
-
-Rectangle {
-    width: 360
-    height: 360
-    Text {
-        text: qsTr("Hello World")
-        anchors.centerIn: parent
     }
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            Qt.quit();
+
+    Item {
+        id: midiOut
+
+        height: root.height * 0.1
+        anchors.top: octaveNumber.bottom
+        anchors.left: root.left
+        anchors.leftMargin: spacing
+
+        Text {
+            id: midiOutLabel
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: spacing
+            font.pointSize: parent.height / 3
+            text: "MIDI Out: " + piano.portName
         }
     }
 }
-*/
