@@ -24,31 +24,19 @@ Item {
 
     Flickable {
         id: flickable
-        anchors.fill: parent
+
+        width: parent.width
+        height: parent.height * 0.8
+
         flickableDirection: Flickable.HorizontalFlick
 
         OctaveKeys {
             id: octave
             anchors.horizontalCenter: parent.horizontalCenter
-            y: spacing
-            width: parent.width - spacing * 2
-            height: parent.height - spacing - octaveNumber.height - spacing
-        }
-
-        Item {
-            id: octaveNumber
-            anchors.horizontalCenter: octave.horizontalCenter
-            anchors.top: octave.bottom
-
-            Text {
-                id: octaveText
-                anchors.centerIn: parent
-                text: "Octave: " + piano.octave
-            }
-        }
-
-        ListView {
-            id: parameters
+            anchors.fill: parent
+            anchors.topMargin: spacing
+            anchors.leftMargin: spacing
+            anchors.rightMargin: spacing
         }
 
         onFlickStarted: {
