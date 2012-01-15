@@ -52,9 +52,17 @@ Item {
     Item {
         id: octaveNumber
 
+        width: root.width
         height: root.height * 0.1
         anchors.horizontalCenter: root.horizontalCenter
         anchors.top: flickable.bottom
+
+        Image {
+            id: octaveNumberBackground
+            anchors.fill: parent
+            anchors.margins: spacing
+            source: "images/Arrows.svg"
+        }
 
         Text {
             id: octaveNumberLabel
