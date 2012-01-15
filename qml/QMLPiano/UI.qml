@@ -1,7 +1,9 @@
 import QtQuick 1.0
 import QMLPiano 1.0
 
-Rectangle {
+Item {
+    id: root
+
     width: 360
     height: 360
 
