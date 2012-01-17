@@ -12,11 +12,6 @@ Item {
 
     Piano {
         id: piano
-//        on
-    }
-
-    Connections {
-//
     }
 
     Flickable {

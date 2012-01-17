@@ -76,26 +76,13 @@ void Piano::sendNoteMessage(unsigned char status, int keyIndex, unsigned char ve
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
-#if 0
-    QScopedPointer<QApplication> app(createApplication(argc, argv));
-
-    QmlApplicationViewer viewer;
-    viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
-    viewer.setMainQmlFile(QLatin1String("qml/QMLPiano/UI.qml"));
-    viewer.showExpanded();
-#endif
-
     QApplication app(argc, argv);
 
     qmlRegisterType<Piano>("QMLPiano", 1, 0, "Piano");
 
     QDeclarativeView view(QUrl::fromLocalFile("qml/QMLPiano/UI.qml"));
-    QObject* ui = view.rootObject();
-
-//    QObject::connect(ui, SIGNAL(octaveIncreased()), )
 
     view.show();
 
     return app.exec();
-//    return app->exec();
 }
