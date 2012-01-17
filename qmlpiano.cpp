@@ -65,9 +65,9 @@ void Piano::sendNoteMessage(unsigned char status, int keyIndex, unsigned char ve
     std::vector<unsigned char> message;
 
     // Assemble MIDI message
-    message[0] = status;
-    message[1] = key2midi(keyIndex); // Note
-    message[2] = velocity;
+    message.push_back(status);
+    message.push_back(key2midi(keyIndex)); // Note
+    message.push_back(velocity);
 
     // Send it
     midiOut_->sendMessage(&message);
