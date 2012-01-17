@@ -18,20 +18,45 @@ Item {
         id: flickable
 
         width: parent.width
-        height: parent.height * 0.8
+        height: parent.height * 0.9
 
         flickableDirection: Flickable.HorizontalFlick
 
         OctaveKeys {
             id: octave
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.fill: parent
             anchors.topMargin: spacing
             anchors.leftMargin: spacing
             anchors.rightMargin: spacing
 
+            width: parent.width
+            height: root.height * 0.8
+
             onKeyPushed: piano.noteOn(keyIndex)
             onKeyReleased: piano.noteOff(keyIndex)
+        }
+
+        Item {
+            id: octaveNumber
+
+            width: root.width
+            height: root.height * 0.1
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: octave.bottom
+
+            Image {
+                id: octaveNumberBackground
+                anchors.fill: parent
+                anchors.margins: spacing
+                source: "images/Arrows.svg"
+            }
+
+            Text {
+                id: octaveNumberLabel
+                anchors.centerIn: parent
+                font.pointSize: parent.height - spacing
+                text: "Octave: " + piano.octave
+            }
         }
 
         onFlickStarted: {
@@ -45,33 +70,10 @@ Item {
     }
 
     Item {
-        id: octaveNumber
-
-        width: root.width
-        height: root.height * 0.1
-        anchors.horizontalCenter: root.horizontalCenter
-        anchors.top: flickable.bottom
-
-        Image {
-            id: octaveNumberBackground
-            anchors.fill: parent
-            anchors.margins: spacing
-            source: "images/Arrows.svg"
-        }
-
-        Text {
-            id: octaveNumberLabel
-            anchors.centerIn: parent
-            font.pointSize: parent.height - spacing
-            text: "Octave: " + piano.octave
-        }
-    }
-
-    Item {
         id: midiOut
 
         height: root.height * 0.1
-        anchors.top: octaveNumber.bottom
+        anchors.top: flickable.bottom
         anchors.left: root.left
         anchors.leftMargin: spacing
 
