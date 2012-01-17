@@ -41,7 +41,10 @@ for(deploymentfolder, DEPLOYMENTFOLDERS) {
 
 MAINPROFILEPWD = $$PWD
 
-win32 {
+symbian {
+    isEmpty(ICON):exists($${TARGET}.svg):ICON = $${TARGET}.svg
+    isEmpty(TARGET.EPOCHEAPSIZE):TARGET.EPOCHEAPSIZE = 0x20000 0x2000000
+} else:win32 {
     copyCommand =
     for(deploymentfolder, DEPLOYMENTFOLDERS) {
         source = $$MAINPROFILEPWD/$$eval($${deploymentfolder}.source)
