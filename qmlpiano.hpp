@@ -21,13 +21,14 @@ class Piano : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(int octave READ octave WRITE setOctave NOTIFY octaveChanged)
-    Q_PROPERTY(QString portName READ portName)
+    Q_PROPERTY(QString portName READ portName NOTIFY portNameChanged)
 public:
     Piano() : octave_(0) { initMIDI(); }
     ~Piano() { cleanupMIDI(); }
     int octave() const { return octave_; }
 signals:
     void octaveChanged(int);
+    void portNameChanged();
 public:
     void setOctave(int octave) { octave_ = octave; emit octaveChanged(octave_); }
     QString portName() const { return portName_; }
