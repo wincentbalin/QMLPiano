@@ -7,9 +7,6 @@ Item {
     width: 360
     height: 360
 
-    signal noteOn(int note)
-    signal noteOff(int note)
-
     // Positioning
     property real spacing: 5
 
@@ -37,6 +34,9 @@ Item {
             anchors.topMargin: spacing
             anchors.leftMargin: spacing
             anchors.rightMargin: spacing
+
+            onKeyPushed: piano.noteOn(keyIndex)
+            onKeyReleased: piano.noteOff(keyIndex)
         }
 
         onFlickStarted: {

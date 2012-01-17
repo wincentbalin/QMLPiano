@@ -6,6 +6,9 @@ Rectangle {
 
     property int octaveIndex: 0
 
+    signal keyPushed(int keyIndex)
+    signal keyReleased(int keyIndex)
+
     // Positioning parameters
     property real spacing: 3
 
@@ -27,6 +30,9 @@ Rectangle {
         keyIndex: 0
         x: initialX
         y: whiteKeyY
+
+        onPushed: keyPushed(index)
+        onReleased: keyReleased(index)
     }
 
     BlackKey {
@@ -35,6 +41,9 @@ Rectangle {
         keyIndex: 1
         x: keyC.x + sharpKey
         y: blackKeyY
+
+        onPushed: keyPushed(index)
+        onReleased: keyReleased(index)
     }
 
     WhiteKey {
@@ -43,6 +52,9 @@ Rectangle {
         keyIndex: 2
         x: keyC.x + nextKey
         y: whiteKeyY
+
+        onPushed: keyPushed(index)
+        onReleased: keyReleased(index)
     }
 
     BlackKey {
@@ -51,6 +63,9 @@ Rectangle {
         keyIndex: 3
         x: keyCSharp.x + nextKey
         y: blackKeyY
+
+        onPushed: keyPushed(index)
+        onReleased: keyReleased(index)
     }
 
     WhiteKey {
@@ -59,6 +74,9 @@ Rectangle {
         keyIndex: 4
         x: keyD.x + nextKey
         y: whiteKeyY
+
+        onPushed: keyPushed(index)
+        onReleased: keyReleased(index)
     }
 
     WhiteKey {
@@ -67,6 +85,9 @@ Rectangle {
         keyIndex: 5
         x: keyE.x + nextKey
         y: whiteKeyY
+
+        onPushed: keyPushed(index)
+        onReleased: keyReleased(index)
     }
 
     BlackKey {
@@ -75,6 +96,9 @@ Rectangle {
         keyIndex: 6
         x: keyF.x + sharpKey
         y: blackKeyY
+
+        onPushed: keyPushed(index)
+        onReleased: keyReleased(index)
     }
 
     WhiteKey {
@@ -83,6 +107,9 @@ Rectangle {
         keyIndex: 7
         x: keyF.x + nextKey
         y: whiteKeyY
+
+        onPushed: keyPushed(index)
+        onReleased: keyReleased(index)
     }
 
     BlackKey {
@@ -91,6 +118,9 @@ Rectangle {
         keyIndex: 8
         x: keyFSharp.x + nextKey
         y: blackKeyY
+
+        onPushed: keyPushed(index)
+        onReleased: keyReleased(index)
     }
 
     WhiteKey {
@@ -99,6 +129,9 @@ Rectangle {
         keyIndex: 9
         x: keyG.x + nextKey
         y: whiteKeyY
+
+        onPushed: keyPushed(index)
+        onReleased: keyReleased(index)
     }
 
     BlackKey {
@@ -107,6 +140,9 @@ Rectangle {
         keyIndex: 10
         x: keyGSharp.x + nextKey
         y: blackKeyY
+
+        onPushed: keyPushed(index)
+        onReleased: keyReleased(index)
     }
 
     WhiteKey {
@@ -115,5 +151,8 @@ Rectangle {
         keyIndex: 11
         x: keyA.x + nextKey
         y: whiteKeyY
+
+        onPushed: keyPushed(index)
+        onReleased: keyReleased(index)
     }
 }
